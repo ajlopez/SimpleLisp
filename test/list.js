@@ -19,4 +19,4 @@ assert.equal(lst.asString(), "(1)");
 var lst = list.createList(1, 2);
 assert.equal(lst.first(), 1);
 assert.equal(lst.rest().asString(), "(2)");
-assert.equal(lst.asString("(1 2)"));
+assert.equal(lst.asString(), "(1 2)");
