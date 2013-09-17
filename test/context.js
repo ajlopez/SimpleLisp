@@ -17,9 +17,9 @@ exports['set and get'] = function (test) {
     test.equal(ctx.get('one'), 1);
 }
 
-// using parent
-
-var parent = context.createContext();
-var ctx = context.createContext(parent);
-parent.set('one', 1);
-assert.equal(ctx.get('one'), 1);
+exports['using parent'] = function (test) {
+    var parent = context.createContext();
+    var ctx = context.createContext(parent);
+    parent.set('one', 1);
+    test.equal(ctx.get('one'), 1);
+}
