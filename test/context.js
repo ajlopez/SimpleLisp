@@ -1,20 +1,19 @@
 
-var context = require('../lib/context'),
-    assert = require('assert');
+var context = require('../lib/context');
     
-// create context function
-    
-assert.ok(context.createContext);
-assert.equal(typeof context.createContext, "function");
+exports['create context function'] = function (test) {
+    test.ok(context.createContext);
+    test.equal(typeof context.createContext, "function");
+}
 
-// context get undefined
+exports['context get undefined'] = function (test) {
+    var ctx = context.createContext();
+    test.equal(ctx.get('unknown'), null);
+}
 
-var ctx = context.createContext();
-assert.equal(ctx.get('unknown'), null);
-
-// set and get
-
-var ctx = context.createContext();
-ctx.set('one', 1);
-assert.equal(ctx.get('one'), 1);
+exports['set and get'] = function (test) {
+    var ctx = context.createContext();
+    ctx.set('one', 1);
+    test.equal(ctx.get('one'), 1);
+}
 

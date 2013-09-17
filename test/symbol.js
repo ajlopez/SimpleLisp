@@ -1,26 +1,27 @@
 
 var symbol = require('../lib/symbol'),
-    context = require('../lib/context'),
-    assert = require('assert');    
+    context = require('../lib/context');
     
-// create symbol function
+exports['create symbol function'] = function (test) {
+    test.ok(symbol.createSymbol);
+    test.equal(typeof symbol.createSymbol, "function");
+}
 
-assert.ok(symbol.createSymbol);
-assert.equal(typeof symbol.createSymbol, "function");
+exports['create symbol'] = function (test) {
+    var mysymbol = symbol.createSymbol('a');
+    test.ok(mysymbol);
+}
 
-// create symbol
+exports['as string'] = function (test) {
+    var mysymbol = symbol.createSymbol('a');
+    test.equal(mysymbol.asString(), 'a');
+}
 
-var symbol = symbol.createSymbol('a');
-assert.ok(symbol);
+exports['evaluate in context'] = function (test) {
+    var mysymbol = symbol.createSymbol('a');
+    var ctx = context.createContext();
+    test.equal(mysymbol.evaluate(null, ctx), null);
 
-// as string
-
-assert.equal(symbol.asString(), 'a');
-
-// evaluate in context
-
-var ctx = context.createContext();
-assert.equal(symbol.evaluate(null, ctx), null);
-
-ctx.set('a', 'b');
-assert.equal(symbol.evaluate(null, ctx), 'b');
+    ctx.set('a', 'b');
+    test.equal(mysymbol.evaluate(null, ctx), 'b');
+}
