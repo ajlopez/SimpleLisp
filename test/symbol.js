@@ -17,6 +17,14 @@ exports['as string'] = function (test) {
     test.equal(mysymbol.asString(), 'a');
 }
 
+exports['is symbol'] = function (test) {
+    var mysymbol = symbol.createSymbol('a');
+    test.ok(symbol.isSymbol(mysymbol));
+    test.equal(symbol.isSymbol(10), false);
+    test.equal(symbol.isSymbol('a'), false);
+    test.equal(symbol.isSymbol(null), false);
+}
+
 exports['evaluate in context'] = function (test) {
     var mysymbol = symbol.createSymbol('a');
     var ctx = context.createContext();
