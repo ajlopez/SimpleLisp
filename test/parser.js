@@ -14,4 +14,6 @@ exports['parse symbol'] = function (test) {
     test.ok(result);
     test.ok(symbol.isSymbol(result));
     test.equal(result.asString(), 'a');
+    
+    test.equal(myparser.parse(), null);
 }
