@@ -18,9 +18,28 @@ exports['create list with two elements'] = function (test) {
     test.equal(lst.first(), 1);
     test.equal(lst.rest().asString(), "(2)");
     test.equal(lst.asString(), "(1 2)");
-}exports['create list with nested element'] = function (test) {    var lst = list.createList(1, list.createList(2));    test.equal(lst.first(), 1);    test.equal(lst.rest().asString(), "((2))");    test.equal(lst.asString(), "(1 (2))");
-}exports['create list with two nils'] = function (test) {    var lst = list.createList(null, null);    test.equal(lst.first(), null);    test.equal(lst.asString(), "(nil nil)");
-}exports['create empty list'] = function (test) {    var lst = list.createList();    test.equal(lst.first(), null);    test.equal(lst.rest(), null);    test.equal(lst.asString(), "()");}
+}
+
+exports['create list with nested element'] = function (test) {
+    var lst = list.createList(1, list.createList(2));
+    test.equal(lst.first(), 1);
+    test.equal(lst.rest().asString(), "((2))");
+    test.equal(lst.asString(), "(1 (2))");
+}
+
+exports['create list with two nils'] = function (test) {
+    var lst = list.createList(null, null);
+    test.equal(lst.first(), null);
+    test.equal(lst.asString(), "(nil nil)");
+}
+
+exports['create empty list'] = function (test) {
+    var lst = list.createList();
+    test.equal(lst.first(), null);
+    test.equal(lst.rest(), null);
+    test.equal(lst.asString(), "()");
+}
+
 exports['is list'] = function (test) {
     var emptylst = list.createList();
     var lst = list.createList(1, 2);
