@@ -17,3 +17,20 @@ exports['parse symbol'] = function (test) {
     
     test.equal(myparser.parse(), null);
 }
+
+exports['parse two symbols'] = function (test) {
+    var myparser = parser.createParser('a b');
+    var result = myparser.parse();
+    
+    test.ok(result);
+    test.ok(symbol.isSymbol(result));
+    test.equal(result.asString(), 'a');
+    
+    result = myparser.parse();
+    
+    test.ok(result);
+    test.ok(symbol.isSymbol(result));
+    test.equal(result.asString(), 'b');
+
+    test.equal(myparser.parse(), null);
+}
