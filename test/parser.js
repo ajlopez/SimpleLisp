@@ -1,7 +1,7 @@
 
-var parser = require('../lib/parser'),
-    list = require('../lib/list'),
-    symbol = require('../lib/symbol');
+var parser = require('../lib/parser');
+var list = require('../lib/list');
+var symbol = require('../lib/symbol');
 
 exports['create parser function'] = function (test) {
     test.ok(parser.createParser);
@@ -15,6 +15,17 @@ exports['parse symbol'] = function (test) {
     test.ok(result);
     test.ok(symbol.isSymbol(result));
     test.equal(result.asString(), 'a');
+    
+    test.equal(myparser.parse(), null);
+}
+
+exports['parse integer'] = function (test) {
+    var myparser = parser.createParser('42');
+    var result = myparser.parse();
+    
+    test.ok(result);
+    test.ok(!symbol.isSymbol(result));
+    test.equal(result, 42);
     
     test.equal(myparser.parse(), null);
 }
