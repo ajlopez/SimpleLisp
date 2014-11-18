@@ -1,5 +1,6 @@
 
 var list = require('../lib/list');
+var symbol = require('../lib/symbol');
 
 exports['create list function'] = function (test) {
     test.ok(list.createList);
@@ -49,3 +50,10 @@ exports['is list'] = function (test) {
     test.equal(list.isList(12), false);
     test.equal(list.isList('foo'), false);
 }
+
+exports['compile'] = function (test) {
+    var sadd = symbol.createSymbol('add');
+    var lst = list.createList(sadd, 1, 2);
+    test.equal(lst.compile(), 'add(1, 2)');
+}
+
