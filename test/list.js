@@ -51,9 +51,21 @@ exports['is list'] = function (test) {
     test.equal(list.isList('foo'), false);
 }
 
-exports['compile'] = function (test) {
+exports['compile with integers'] = function (test) {
     var sadd = symbol.createSymbol('add');
     var lst = list.createList(sadd, 1, 2);
     test.equal(lst.compile(), 'add(1, 2)');
+}
+
+exports['compile with integers and list'] = function (test) {
+    var sadd = symbol.createSymbol('add');
+    var lst = list.createList(sadd, 1, 2, list.createList(sadd, 3, 4));
+    test.equal(lst.compile(), 'add(1, 2, add(3, 4))');
+}
+
+exports['compile with strings'] = function (test) {
+    var sadd = symbol.createSymbol('concat');
+    var lst = list.createList(sadd, "foo", "bar");
+    test.equal(lst.compile(), 'concat("foo", "bar")');
 }
 
