@@ -64,8 +64,16 @@ exports['compile with integers and list'] = function (test) {
 }
 
 exports['compile with strings'] = function (test) {
-    var sadd = symbol.createSymbol('concat');
-    var lst = list.createList(sadd, "foo", "bar");
+    var sconcat = symbol.createSymbol('concat');
+    var lst = list.createList(sconcat, "foo", "bar");
     test.equal(lst.compile(), 'concat("foo", "bar")');
 }
 
+exports['compile do'] = function (test) {
+    var sdo = symbol.createSymbol('do');
+    var sadd = symbol.createSymbol('add');
+    var ladd1 = list.createList(sadd, 1, 2);
+    var ladd2 = list.createList(sadd, 3, 4);
+    var lst = list.createList(sdo, ladd1, ladd2);
+    test.equal(lst.compile(), '(function () { add(1, 2); return add(3, 4); })()');
+}
