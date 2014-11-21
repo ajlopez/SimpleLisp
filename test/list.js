@@ -77,3 +77,12 @@ exports['compile do'] = function (test) {
     var lst = list.createList(sdo, ladd1, ladd2);
     test.equal(lst.compile(), '(function () { add(1, 2); return add(3, 4); })()');
 }
+
+exports['compile if'] = function (test) {
+    var sif = symbol.createSymbol('if');
+    var sadd = symbol.createSymbol('add');
+    var ladd1 = list.createList(sadd, 1, 2);
+    var ladd2 = list.createList(sadd, 3, 4);
+    var lst = list.createList(sif, true, ladd1, ladd2);
+    test.equal(lst.compile(), '(function () { if (true) return add(1, 2); else return add(3, 4); })()');
+}
