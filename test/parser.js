@@ -19,6 +19,16 @@ exports['parse symbol'] = function (test) {
     test.equal(myparser.parse(), null);
 }
 
+exports['parse quoted symbol'] = function (test) {
+    var myparser = parser.createParser("'a");
+    var result = myparser.parse();
+    
+    test.ok(result);
+    test.equal(result.asString(), '(quote a)');
+    
+    test.equal(myparser.parse(), null);
+}
+
 exports['parse integer'] = function (test) {
     var myparser = parser.createParser('42');
     var result = myparser.parse();
@@ -26,17 +36,6 @@ exports['parse integer'] = function (test) {
     test.ok(result);
     test.ok(!symbol.isSymbol(result));
     test.equal(result, 42);
-    
-    test.equal(myparser.parse(), null);
-}
-
-exports['parse single quoted string'] = function (test) {
-    var myparser = parser.createParser("'foo'");
-    var result = myparser.parse();
-    
-    test.ok(result);
-    test.ok(!symbol.isSymbol(result));
-    test.equal(result, "foo");
     
     test.equal(myparser.parse(), null);
 }
