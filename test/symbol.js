@@ -33,9 +33,3 @@ exports['evaluate in context'] = function (test) {
     ctx.set('a', 'b');
     test.equal(mysymbol.evaluate(null, ctx), 'b');
 }
-
-exports['compile'] = function (test) {
-    var mysymbol = symbol.createSymbol('a');
-    var ctx = context.createContext();
-    test.equal(mysymbol.compile(), 'a');
-}
