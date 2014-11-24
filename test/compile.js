@@ -33,3 +33,7 @@ exports['compile let with one variable'] = function (test) {
     test.equal(sl.compile('(let ((x 1)) (add 1 x))'), '(function (x) { return add(1, x); })(1)');
 }
 
+exports['compile let with two variable'] = function (test) {
+    test.equal(sl.compile('(let ((x 1) (y 2)) (add y x))'), '(function (x) { return (function (y) { return add(y, x); })(2); })(1)');
+}
+
