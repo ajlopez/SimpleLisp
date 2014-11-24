@@ -29,3 +29,7 @@ exports['compile list with if'] = function (test) {
     test.equal(sl.compile('(if true (add 1 2) (add 3 4))'), '(function () { if (true) return add(1, 2); else return add(3, 4); })()');
 }
 
+exports['compile let with one variable'] = function (test) {
+    test.equal(sl.compile('(let ((x 1)) (add 1 x))'), '(function (x) { return add(1, x); })(1)');
+}
+
