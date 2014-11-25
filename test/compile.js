@@ -37,3 +37,7 @@ exports['compile let with two variable'] = function (test) {
     test.equal(sl.compile('(let ((x 1) (y 2)) (add y x))'), '(function (x) { return (function (y) { return add(y, x); })(2); })(1)');
 }
 
+exports['compile list with while'] = function (test) {
+    test.equal(sl.compile('(while true (add 1 2) (add 3 4))'), '(function () { while (true) { add(1, 2); add(3, 4); } })()');
+}
+
