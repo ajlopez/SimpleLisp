@@ -9,6 +9,10 @@ exports['compile integer'] = function (test) {
     test.equal(sl.compile('42'), '42');
 }
 
+exports['compile quoted integer'] = function (test) {
+    test.equal(sl.compile("'42"), '42');
+}
+
 exports['compile list with integers'] = function (test) {
     test.equal(sl.compile('(add 1 2)'), 'add(1, 2)');
 }
