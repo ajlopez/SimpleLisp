@@ -17,6 +17,14 @@ exports['compile quoted string'] = function (test) {
     test.equal(sl.compile("'\"foo\""), '"foo"');
 }
 
+exports['compile quoted list'] = function (test) {
+    var ctx = sl.context();
+    test.equal(sl.compile("'(1 2 3)", ctx), '$values[0]');
+    test.ok(ctx.values);
+    test.equal(ctx.values.length, 1);
+    test.equal(ctx.values[0].asString(), "(1 2 3)");
+}
+
 exports['compile list with integers'] = function (test) {
     test.equal(sl.compile('(add 1 2)'), 'add(1, 2)');
 }
