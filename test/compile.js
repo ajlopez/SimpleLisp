@@ -57,3 +57,6 @@ exports['compile list with while'] = function (test) {
     test.equal(sl.compile('(while true (add 1 2) (add 3 4))'), '(function () { while (true) { add(1, 2); add(3, 4); } })()');
 }
 
+exports['compile simple def'] = function (test) {
+    test.equal(sl.compile('(def one 1)'), 'var one; function $def_one($value) { one = $value; } $def_one(1)');
+}
