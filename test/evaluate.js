@@ -13,3 +13,8 @@ exports['evaluate quoted list'] = function (test) {
     test.equal(sl.evaluate("'(1 2 3)").asString(), '(1 2 3)');
 }
 
+exports['evaluate first'] = function (test) {
+    test.strictEqual(sl.evaluate("(first '(1 2 3))"), 1);
+}
+
+
