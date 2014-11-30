@@ -9,3 +9,7 @@ exports['evaluate string'] = function (test) {
     test.equal(sl.evaluate('"foo"'), 'foo');
 }
 
+exports['evaluate quoted list'] = function (test) {
+    test.equal(sl.evaluate("'(1 2 3)").asString(), '(1 2 3)');
+}
+
