@@ -21,4 +21,8 @@ exports['evaluate cons'] = function (test) {
     test.strictEqual(sl.evaluate("(cons 1 '(2 3))").asString(), '(1 2 3)');
 }
 
+exports['evaluate rest'] = function (test) {
+    test.strictEqual(sl.evaluate("(rest '(1 2 3))").asString(), '(2 3)');
+}
+
 
