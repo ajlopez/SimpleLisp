@@ -25,4 +25,8 @@ exports['evaluate rest'] = function (test) {
     test.strictEqual(sl.evaluate("(rest '(1 2 3))").asString(), '(2 3)');
 }
 
+exports['evaluate list'] = function (test) {
+    test.strictEqual(sl.evaluate("(list 1 2 3)").asString(), '(1 2 3)');
+}
+
 
