@@ -29,4 +29,11 @@ exports['evaluate list'] = function (test) {
     test.strictEqual(sl.evaluate("(list 1 2 3)").asString(), '(1 2 3)');
 }
 
+exports['evaluate listp'] = function (test) {
+    test.strictEqual(sl.evaluate("(listp '(1 2 3))"), true);
+    test.strictEqual(sl.evaluate("(listp '())"), true);
+    test.strictEqual(sl.evaluate("(listp 'a)"), false);
+    test.strictEqual(sl.evaluate("(listp 42)"), false);
+}
+
 
