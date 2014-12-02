@@ -5,6 +5,10 @@ exports['compile symbol'] = function (test) {
     test.equal(sl.compile('a'), 'a');
 }
 
+exports['compile nil'] = function (test) {
+    test.equal(sl.compile('nil'), 'null');
+}
+
 exports['compile integer'] = function (test) {
     test.equal(sl.compile('42'), '42');
 }

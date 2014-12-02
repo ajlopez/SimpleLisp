@@ -36,4 +36,12 @@ exports['evaluate listp'] = function (test) {
     test.strictEqual(sl.evaluate("(listp 42)"), false);
 }
 
+exports['evaluate nilp'] = function (test) {
+    test.strictEqual(sl.evaluate("(nilp nil)"), true);
+    test.strictEqual(sl.evaluate("(nilp '(1 2 3))"), false);
+    test.strictEqual(sl.evaluate("(nilp '())"), false);
+    test.strictEqual(sl.evaluate("(listp 'a)"), false);
+    test.strictEqual(sl.evaluate("(listp 42)"), false);
+}
+
 
