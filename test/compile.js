@@ -69,6 +69,15 @@ exports['compile def fn'] = function (test) {
     test.equal(sl.compile('(def inc (fn (x) (add x 1)))'), 'var inc; function $def_inc($value) { inc = $value; } $def_inc((function (x) { return add(x, 1); }))');
 }
 
+exports['compile defm (macro) fn'] = function (test) {
+    var ctx = sl.context();
+    sl.compile('(defm tolist (fn (x) (list x)))', ctx);
+    test.ok(ctx.macros);
+    test.ok(ctx.macros.tolist);
+    test.equal(typeof ctx.macros.tolist, 'function');
+    test.equal(ctx.macros.tolist(2).asString(), '(2)');
+}
+
 exports['compile simple fn'] = function (test) {
     test.equal(sl.compile('(fn (x y) (add x y))'), '(function (x, y) { return add(x, y); })');
 }
