@@ -65,6 +65,10 @@ exports['compile simple def'] = function (test) {
     test.equal(sl.compile('(def one 1)'), 'var one; function $def_one($value) { one = $value; } $def_one(1)');
 }
 
+exports['compile def fn'] = function (test) {
+    test.equal(sl.compile('(def inc (fn (x) (add x 1)))'), 'var inc; function $def_inc($value) { inc = $value; } $def_inc((function (x) { return add(x, 1); }))');
+}
+
 exports['compile simple fn'] = function (test) {
     test.equal(sl.compile('(fn (x y) (add x y))'), '(function (x, y) { return add(x, y); })');
 }
