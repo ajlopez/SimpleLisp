@@ -69,6 +69,10 @@ exports['compile simple fn'] = function (test) {
     test.equal(sl.compile('(fn (x y) (add x y))'), '(function (x, y) { return add(x, y); })');
 }
 
-exports['compile fn with variable argument list'] = function (test) {
+exports['compile fn with arguments and variable argument list'] = function (test) {
     test.equal(sl.compile('(fn (x y & z) (add x y))'), '(function (x, y) { var z = makevarargs(arguments, 2); return add(x, y); })');
+}
+
+exports['compile fn with variable argument list'] = function (test) {
+    test.equal(sl.compile('(fn (& z) z)'), '(function () { var z = makevarargs(arguments, 0); return z; })');
 }
