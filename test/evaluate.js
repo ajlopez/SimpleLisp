@@ -44,4 +44,10 @@ exports['evaluate nilp'] = function (test) {
     test.strictEqual(sl.evaluate("(listp 42)"), false);
 }
 
+exports['define and evaluate macro'] = function (test) {
+    var ctx = sl.context();
+    sl.compile("(defm tolist (fn (x) (cons 'list (cons x nil))))", ctx);
+    test.equal(sl.evaluate('(tolist 2)', ctx).asString(), '(2)');
+}
+
 
