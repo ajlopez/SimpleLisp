@@ -50,4 +50,7 @@ exports['define and evaluate macro'] = function (test) {
     test.equal(sl.evaluate('(tolist 2)', ctx).asString(), '(2)');
 }
 
+exports['evaluate varargs'] = function (test) {
+    test.equal(sl.evaluate('((fn (& z) z) 1 2 3)').asString(), '(1 2 3)');
+}
 
