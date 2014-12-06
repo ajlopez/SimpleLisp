@@ -54,3 +54,7 @@ exports['evaluate varargs'] = function (test) {
     test.equal(sl.evaluate('((fn (& z) z) 1 2 3)').asString(), '(1 2 3)');
 }
 
+exports['evaluate string native methods'] = function (test) {
+    test.equal(sl.evaluate('(.toUpperCase "foo")'), 'FOO');
+    test.equal(sl.evaluate('(.substring "foo" 1 2)'), 'o');
+}
