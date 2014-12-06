@@ -33,6 +33,10 @@ exports['compile list with integers'] = function (test) {
     test.equal(sl.compile('(add 1 2)'), 'add(1, 2)');
 }
 
+exports['compile list with native method'] = function (test) {
+    test.equal(sl.compile('(.substring "foo" 1)'), '"foo".substring(1)');
+}
+
 exports['compile list with integers and list'] = function (test) {
     test.equal(sl.compile('(add 1 2 (add 3 4))'), 'add(1, 2, add(3, 4))');
 }
