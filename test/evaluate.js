@@ -58,3 +58,7 @@ exports['evaluate string native methods'] = function (test) {
     test.equal(sl.evaluate('(.toUpperCase "foo")'), 'FOO');
     test.equal(sl.evaluate('(.substring "foo" 1 2)'), 'o');
 }
+
+exports['evaluate string native property'] = function (test) {
+    test.equal(sl.evaluate('(:length "foo")'), 3);
+}
