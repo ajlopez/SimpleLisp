@@ -5,6 +5,10 @@ exports['compile symbol'] = function (test) {
     test.equal(sl.compile('a'), 'a');
 }
 
+exports['compile two symbols'] = function (test) {
+    test.equal(sl.compile('a b'), '(function () { a; return b; })()');
+}
+
 exports['compile nil'] = function (test) {
     test.equal(sl.compile('nil'), 'null');
 }
@@ -101,3 +105,4 @@ exports['compile fn with arguments and variable argument list'] = function (test
 exports['compile fn with variable argument list'] = function (test) {
     test.equal(sl.compile('(fn (& z) z)'), '(function () { var z = makevarargs(arguments, 0); return z; })');
 }
+
