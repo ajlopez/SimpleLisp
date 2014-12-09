@@ -66,3 +66,7 @@ exports['evaluate string native methods'] = function (test) {
 exports['evaluate string native property'] = function (test) {
     test.equal(sl.evaluate('(:length "foo")'), 3);
 }
+
+exports['evaluate new object'] = function (test) {
+    test.deepEqual(sl.evaluate('(newobj)'), { });
+}
