@@ -70,3 +70,7 @@ exports['evaluate string native property'] = function (test) {
 exports['evaluate new object'] = function (test) {
     test.deepEqual(sl.evaluate('(newobj)'), { });
 }
+
+exports['evaluate new object with properties'] = function (test) {
+    test.deepEqual(sl.evaluate('(let ((x (newobj))) (:name x "Adam") (:age x 800) x)'), { name: "Adam", age: 800 });
+}
