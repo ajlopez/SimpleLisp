@@ -17,6 +17,10 @@ exports['compile integer'] = function (test) {
     test.equal(sl.compile('42'), '42');
 }
 
+exports['compile string'] = function (test) {
+    test.equal(sl.compile('"foo"'), '"foo"');
+}
+
 exports['compile quoted integer'] = function (test) {
     test.equal(sl.compile("'42"), '42');
 }
