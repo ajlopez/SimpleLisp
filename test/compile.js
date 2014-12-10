@@ -13,6 +13,11 @@ exports['compile nil'] = function (test) {
     test.equal(sl.compile('nil'), 'null');
 }
 
+exports['compile booleans'] = function (test) {
+    test.strictEqual(sl.compile('false'), 'false');
+    test.strictEqual(sl.compile('true'), 'true');
+}
+
 exports['compile integer'] = function (test) {
     test.equal(sl.compile('42'), '42');
 }
@@ -85,28 +90,28 @@ exports['compile simple def'] = function (test) {
     test.equal(sl.compile('(def one 1)'), 'var one; function $def_one($value) { one = $value; } $def_one(1)');
 }
 
-exports['compile def fn'] = function (test) {
-    test.equal(sl.compile('(def inc (fn (x) (add x 1)))'), 'var inc; function $def_inc($value) { inc = $value; } $def_inc((function (x) { return add(x, 1); }))');
+exports['compile def lamba'] = function (test) {
+    test.equal(sl.compile('(def inc (lambda (x) (add x 1)))'), 'var inc; function $def_inc($value) { inc = $value; } $def_inc((function (x) { return add(x, 1); }))');
 }
 
-exports['compile defm (macro) fn'] = function (test) {
+exports['compile defm (macro) lambda'] = function (test) {
     var ctx = sl.context();
-    sl.compile('(defm tolist (fn (x) (list x)))', ctx);
+    sl.compile('(defm tolist (lambda (x) (list x)))', ctx);
     test.ok(ctx.macros);
     test.ok(ctx.macros.tolist);
     test.equal(typeof ctx.macros.tolist, 'function');
     test.equal(ctx.macros.tolist(2).asString(), '(2)');
 }
 
-exports['compile simple fn'] = function (test) {
-    test.equal(sl.compile('(fn (x y) (add x y))'), '(function (x, y) { return add(x, y); })');
+exports['compile simple lambda'] = function (test) {
+    test.equal(sl.compile('(lambda (x y) (add x y))'), '(function (x, y) { return add(x, y); })');
 }
 
-exports['compile fn with arguments and variable argument list'] = function (test) {
-    test.equal(sl.compile('(fn (x y & z) (add x y))'), '(function (x, y) { var z = makevarargs(arguments, 2); return add(x, y); })');
+exports['compile lambda with arguments and variable argument list'] = function (test) {
+    test.equal(sl.compile('(lambda (x y & z) (add x y))'), '(function (x, y) { var z = makevarargs(arguments, 2); return add(x, y); })');
 }
 
-exports['compile fn with variable argument list'] = function (test) {
-    test.equal(sl.compile('(fn (& z) z)'), '(function () { var z = makevarargs(arguments, 0); return z; })');
+exports['compile lambda with variable argument list'] = function (test) {
+    test.equal(sl.compile('(lambda (& z) z)'), '(function () { var z = makevarargs(arguments, 0); return z; })');
 }
 
