@@ -49,9 +49,11 @@ exports['evaluate nilp'] = function (test) {
 }
 
 exports['define and evaluate macro'] = function (test) {
-    var ctx = sl.context();
-    sl.compile("(defm tolist (lambda (x) (cons 'list (cons x nil))))", ctx);
-    test.equal(sl.evaluate('(tolist 2)', ctx).asString(), '(2)');
+    var code = [
+        "(defm tolist (lambda (x) (cons 'list (cons x nil))))",
+        '(tolist 2)'
+    ].join('\n');
+    test.equal(sl.evaluate(code).asString(), '(2)');
 }
 
 exports['evaluate varargs'] = function (test) {
