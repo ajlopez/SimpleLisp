@@ -56,6 +56,14 @@ exports['define and evaluate macro'] = function (test) {
     test.equal(sl.evaluate(code).asString(), '(2)');
 }
 
+exports['define and evaluate second'] = function (test) {
+    var code = [
+        "(def second (lambda (x) (first (rest x))))",
+        "(second '(1 2 3))"
+    ].join('\n');
+    test.equal(sl.evaluate(code), 2);
+}
+
 exports['evaluate varargs'] = function (test) {
     test.equal(sl.evaluate('((lambda (& z) z) 1 2 3)').asString(), '(1 2 3)');
 }

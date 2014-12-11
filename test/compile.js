@@ -87,11 +87,11 @@ exports['compile list with while'] = function (test) {
 }
 
 exports['compile simple def'] = function (test) {
-    test.equal(sl.compile('(def one 1)'), 'var one; function $def_one($value) { one = $value; } $def_one(1)');
+    test.equal(sl.compile('(def one 1)'), '(function () { var one; function $def_one($value) { one = $value; }; return $def_one(1); })()');
 }
 
 exports['compile def lamba'] = function (test) {
-    test.equal(sl.compile('(def inc (lambda (x) (add x 1)))'), 'var inc; function $def_inc($value) { inc = $value; } $def_inc((function (x) { return add(x, 1); }))');
+    test.equal(sl.compile('(def inc (lambda (x) (add x 1)))'), '(function () { var inc; function $def_inc($value) { inc = $value; }; return $def_inc((function (x) { return add(x, 1); })); })()');
 }
 
 exports['compile defm (macro) lambda'] = function (test) {
