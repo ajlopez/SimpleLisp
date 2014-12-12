@@ -1,5 +1,6 @@
 
 var sl = require('..');
+var path = require('path');
 
 exports['evaluate integer'] = function (test) {
     test.strictEqual(sl.evaluate('42'), 42);
@@ -62,6 +63,18 @@ exports['define and evaluate second'] = function (test) {
         "(second '(1 2 3))"
     ].join('\n');
     test.equal(sl.evaluate(code), 2);
+}
+
+exports['define and evaluate second file'] = function (test) {
+    var filename = path.join(__dirname, 'second.lsp');
+    test.equal(sl.evaluateFile(filename), 2);
+}
+
+exports['define and evaluate tolist file using context'] = function (test) {
+    var filename = path.join(__dirname, 'tolist.lsp');
+    var ctx = sl.context();
+    test.equal(sl.evaluateFile(filename, ctx).asString(), '(2)');
+    test.ok(ctx.macros.tolist);
 }
 
 exports['evaluate varargs'] = function (test) {
