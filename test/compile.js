@@ -87,15 +87,15 @@ exports['compile list with while'] = function (test) {
 }
 
 exports['compile simple def'] = function (test) {
-    test.equal(sl.compile('(def one 1)'), '(function () { var one; function $def_one($value) { one = $value; }; return $def_one(1); })()');
+    test.equal(sl.compile('(def one 1)'), '(function () { var one; return one = 1; })()');
 }
 
 exports['compile two def and expression'] = function (test) {
-    test.equal(sl.compile('(def one 1) (def two 2) (add one two)'), '(function () { var one; function $def_one($value) { one = $value; } var two; function $def_two($value) { two = $value; } $def_one(1); $def_two(2); return add(one, two); })()');
+    test.equal(sl.compile('(def one 1) (def two 2) (add one two)'), '(function () { var one; var two; one = 1; two = 2; return add(one, two); })()');
 }
 
 exports['compile def lamba'] = function (test) {
-    test.equal(sl.compile('(def inc (lambda (x) (add x 1)))'), '(function () { var inc; function $def_inc($value) { inc = $value; }; return $def_inc((function (x) { return add(x, 1); })); })()');
+    test.equal(sl.compile('(def inc (lambda (x) (add x 1)))'), '(function () { var inc; return inc = (function (x) { return add(x, 1); }); })()');
 }
 
 exports['compile defm (macro) lambda'] = function (test) {
