@@ -46,16 +46,16 @@ exports['compile list with integers'] = function (test) {
     test.equal(sl.compile('(add 1 2)'), 'add(1, 2)');
 }
 
-exports['compile list with native method'] = function (test) {
-    test.equal(sl.compile('(.substring "foo" 1)'), '"foo".substring(1)');
+exports['compile list with native method and one argument'] = function (test) {
+    test.equal(sl.compile('("foo" .substring 1)'), '"foo".substring(1)');
 }
 
 exports['compile list with access to native property'] = function (test) {
-    test.equal(sl.compile('(:name adam)'), 'adam.name');
+    test.equal(sl.compile('(adam :name)'), 'adam.name');
 }
 
 exports['compile list with set native property'] = function (test) {
-    test.equal(sl.compile('(:name adam "Adam")'), 'adam.name = "Adam"');
+    test.equal(sl.compile('(adam :name "Adam")'), 'adam.name = "Adam"');
 }
 
 exports['compile list with integers and list'] = function (test) {
