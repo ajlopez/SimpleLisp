@@ -82,12 +82,12 @@ exports['evaluate varargs'] = function (test) {
 }
 
 exports['evaluate string native methods'] = function (test) {
-    test.equal(sl.evaluate('("foo" .toUpperCase)'), 'FOO');
-    test.equal(sl.evaluate('("foo" .substring 1 2)'), 'o');
+    test.equal(sl.evaluate('(("foo" .toUpperCase))'), 'FOO');
+    test.equal(sl.evaluate('(("foo" .substring) 1 2)'), 'o');
 }
 
 exports['evaluate string native property'] = function (test) {
-    test.equal(sl.evaluate('("foo" :length)'), 3);
+    test.equal(sl.evaluate('("foo" .length)'), 3);
 }
 
 exports['evaluate new object'] = function (test) {
@@ -95,5 +95,5 @@ exports['evaluate new object'] = function (test) {
 }
 
 exports['evaluate new object with properties'] = function (test) {
-    test.deepEqual(sl.evaluate('(let ((x (newobj))) (x :name "Adam") (x :age 800) x)'), { name: "Adam", age: 800 });
+    test.deepEqual(sl.evaluate('(let ((x (newobj))) (x .name "Adam") (x .age 800) x)'), { name: "Adam", age: 800 });
 }
