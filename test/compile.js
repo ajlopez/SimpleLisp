@@ -1,5 +1,6 @@
 
 var sl = require('..');
+var path = require('path');
 
 exports['compile symbol'] = function (test) {
     test.equal(sl.compile('a'), 'a');
@@ -119,3 +120,21 @@ exports['compile lambda with variable argument list'] = function (test) {
     test.equal(sl.compile('(lambda (& z) z)'), '(function () { var z = makevarargs(arguments, 0); return z; })');
 }
 
+exports['compile second file'] = function (test) {
+    var filename = path.join(__dirname, 'second.lsp');
+    var ctx = sl.context();
+    var code = sl.compileFile(filename, ctx);
+    
+    test.ok(code);
+    var $values = ctx.values;
+    
+    function first(list) {
+        return list.first();
+    }
+
+    function rest(list) {
+        return list.rest();
+    }
+    
+    test.equal(eval(code), 2);
+}
