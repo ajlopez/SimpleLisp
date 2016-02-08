@@ -16,9 +16,22 @@ npm install simplelisp
 Reference in your program:
 
 ```js
-var sg = require('simplelisp');
+var sl = require('simplelisp');
 ```
-TBD
+
+Evaluate string:
+```js
+sl.evaluate("(first '(1 2))");  // 1
+```
+
+Evaluate file:
+```js
+sl.evaluateFile("mypgm.lsp");
+```
+
+## Versions
+
+- 0.0.1 Published
 
 ## Development
 
@@ -31,7 +44,7 @@ npm test
 
 ## Samples
 
-TBD
+[Hello](https://github.com/ajlopez/SimpleLisp/tree/master/samples/simple) Simple Hello, world program
 
 ## License
 
