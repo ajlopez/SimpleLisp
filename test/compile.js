@@ -99,13 +99,22 @@ exports['compile def lamba'] = function (test) {
     test.equal(sl.compile('(def inc (lambda (x) (add x 1)))'), '(function () { var inc; return inc = (function (x) { return add(x, 1); }); })()');
 }
 
-exports['compile defm (macro) lambda'] = function (test) {
+exports['compile and evaluate defm (macro) lambda'] = function (test) {
     var ctx = sl.context();
     sl.compile('(defm tolist (lambda (x) (list x)))', ctx);
     test.ok(ctx.macros);
     test.ok(ctx.macros.tolist);
     test.equal(typeof ctx.macros.tolist, 'function');
     test.equal(ctx.macros.tolist(2).asString(), '(2)');
+}
+
+exports['compile and evaluate defm (macro) lambda with two arguments'] = function (test) {
+    var ctx = sl.context();
+    sl.compile('(defm tolist (lambda (x y) (list x y)))', ctx);
+    test.ok(ctx.macros);
+    test.ok(ctx.macros.tolist);
+    test.equal(typeof ctx.macros.tolist, 'function');
+    test.equal(ctx.macros.tolist(2, 3).asString(), '(2 3)');
 }
 
 exports['compile simple lambda'] = function (test) {
