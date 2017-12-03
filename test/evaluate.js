@@ -51,7 +51,7 @@ exports['evaluate nilp'] = function (test) {
 
 exports['define and evaluate macro'] = function (test) {
     var code = [
-        "(defm tolist (lambda (x) (cons 'list (cons x nil))))",
+        "(definem tolist (lambda (x) (cons 'list (cons x nil))))",
         '(tolist 2)'
     ].join('\n');
     test.equal(sl.evaluate(code).asString(), '(2)');
@@ -59,7 +59,7 @@ exports['define and evaluate macro'] = function (test) {
 
 exports['define and evaluate second'] = function (test) {
     var code = [
-        "(def second (lambda (x) (first (rest x))))",
+        "(define second (lambda (x) (first (rest x))))",
         "(second '(1 2 3))"
     ].join('\n');
     test.equal(sl.evaluate(code), 2);

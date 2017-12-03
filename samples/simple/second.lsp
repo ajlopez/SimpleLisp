@@ -1,3 +1,3 @@
-(def second (lambda (x) (first (rest x))))
-(second '(1 2 3))
+(define second (lambda (x) (first (rest x))))
+((console .log) (second '(1 2 3)))
 

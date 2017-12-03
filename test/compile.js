@@ -88,20 +88,20 @@ exports['compile list with while'] = function (test) {
 }
 
 exports['compile simple def'] = function (test) {
-    test.equal(sl.compile('(def one 1)'), '(function () { var one; return one = 1; })()');
+    test.equal(sl.compile('(define one 1)'), '(function () { var one; return one = 1; })()');
 }
 
 exports['compile two def and expression'] = function (test) {
-    test.equal(sl.compile('(def one 1) (def two 2) (add one two)'), '(function () { var one; var two; one = 1; two = 2; return add(one, two); })()');
+    test.equal(sl.compile('(define one 1) (define two 2) (add one two)'), '(function () { var one; var two; one = 1; two = 2; return add(one, two); })()');
 }
 
 exports['compile def lamba'] = function (test) {
-    test.equal(sl.compile('(def inc (lambda (x) (add x 1)))'), '(function () { var inc; return inc = (function (x) { return add(x, 1); }); })()');
+    test.equal(sl.compile('(define inc (lambda (x) (add x 1)))'), '(function () { var inc; return inc = (function (x) { return add(x, 1); }); })()');
 }
 
 exports['compile and evaluate defm (macro) lambda'] = function (test) {
     var ctx = sl.context();
-    sl.compile('(defm tolist (lambda (x) (list x)))', ctx);
+    sl.compile('(definem tolist (lambda (x) (list x)))', ctx);
     test.ok(ctx.macros);
     test.ok(ctx.macros.tolist);
     test.equal(typeof ctx.macros.tolist, 'function');
@@ -110,7 +110,7 @@ exports['compile and evaluate defm (macro) lambda'] = function (test) {
 
 exports['compile and evaluate defm (macro) lambda with two arguments'] = function (test) {
     var ctx = sl.context();
-    sl.compile('(defm tolist (lambda (x y) (list x y)))', ctx);
+    sl.compile('(definem tolist (lambda (x y) (list x y)))', ctx);
     test.ok(ctx.macros);
     test.ok(ctx.macros.tolist);
     test.equal(typeof ctx.macros.tolist, 'function');
