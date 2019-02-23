@@ -1,6 +1,6 @@
 
-var sl = require('..');
-var path = require('path');
+const sl = require('..');
+const path = require('path');
 
 exports['compile symbol'] = function (test) {
     test.equal(sl.compile('a'), 'a');
@@ -36,7 +36,7 @@ exports['compile quoted string'] = function (test) {
 }
 
 exports['compile quoted list'] = function (test) {
-    var ctx = sl.context();
+    const ctx = sl.context();
     test.equal(sl.compile("'(1 2 3)", ctx), '$values[0]');
     test.ok(ctx.values);
     test.equal(ctx.values.length, 1);
@@ -100,7 +100,7 @@ exports['compile def lamba'] = function (test) {
 }
 
 exports['compile and evaluate defm (macro) lambda'] = function (test) {
-    var ctx = sl.context();
+    const ctx = sl.context();
     sl.compile('(definem tolist (lambda (x) (list x)))', ctx);
     test.ok(ctx.macros);
     test.ok(ctx.macros.tolist);
@@ -109,7 +109,7 @@ exports['compile and evaluate defm (macro) lambda'] = function (test) {
 }
 
 exports['compile and evaluate defm (macro) lambda with two arguments'] = function (test) {
-    var ctx = sl.context();
+    const ctx = sl.context();
     sl.compile('(definem tolist (lambda (x y) (list x y)))', ctx);
     test.ok(ctx.macros);
     test.ok(ctx.macros.tolist);
@@ -130,12 +130,12 @@ exports['compile lambda with variable argument list'] = function (test) {
 }
 
 exports['compile second file'] = function (test) {
-    var filename = path.join(__dirname, 'second.lsp');
-    var ctx = sl.context();
-    var code = sl.compileFile(filename, ctx);
+    const filename = path.join(__dirname, 'second.lsp');
+    const ctx = sl.context();
+    const code = sl.compileFile(filename, ctx);
     
     test.ok(code);
-    var $values = ctx.values;
+    const $values = ctx.values;
     
     function first(list) {
         return list.first();
