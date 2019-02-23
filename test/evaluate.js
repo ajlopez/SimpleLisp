@@ -1,6 +1,6 @@
 
-var sl = require('..');
-var path = require('path');
+const sl = require('..');
+const path = require('path');
 
 exports['evaluate integer'] = function (test) {
     test.strictEqual(sl.evaluate('42'), 42);
@@ -50,7 +50,7 @@ exports['evaluate nilp'] = function (test) {
 }
 
 exports['define and evaluate macro'] = function (test) {
-    var code = [
+    const code = [
         "(definem tolist (lambda (x) (cons 'list (cons x nil))))",
         '(tolist 2)'
     ].join('\n');
@@ -58,7 +58,7 @@ exports['define and evaluate macro'] = function (test) {
 }
 
 exports['define and evaluate second'] = function (test) {
-    var code = [
+    const code = [
         "(define second (lambda (x) (first (rest x))))",
         "(second '(1 2 3))"
     ].join('\n');
@@ -66,13 +66,13 @@ exports['define and evaluate second'] = function (test) {
 }
 
 exports['define and evaluate second file'] = function (test) {
-    var filename = path.join(__dirname, 'second.lsp');
+    const filename = path.join(__dirname, 'second.lsp');
     test.equal(sl.evaluateFile(filename), 2);
 }
 
 exports['define and evaluate tolist file using context'] = function (test) {
-    var filename = path.join(__dirname, 'tolist.lsp');
-    var ctx = sl.context();
+    const filename = path.join(__dirname, 'tolist.lsp');
+    const ctx = sl.context();
     test.equal(sl.evaluateFile(filename, ctx).asString(), '(2)');
     test.ok(ctx.macros.tolist);
 }
