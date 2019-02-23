@@ -1,17 +1,17 @@
 { "name": "simplelisp"
-, "description": "Lisp compiler to JavaScript"
-, "keywords": [ "lisp", "compiler", "javascript" ]
+, "description": "Lisp transpiler to JavaScript"
+, "keywords": [ "lisp", "compiler", "javascript", "transpiler" ]
 , "version": "0.0.1"
 , "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)"
 , "repository": { "type": "git", "url": "git://github.com/ajlopez/SimpleLisp.git" }
 , "main": "./lib/simplelisp.js"
-, "engines": { "node": ">= 0.10.0" }
+, "engines": { "node": ">= 6.0.0" }
 , "scripts": {
     "test": "simpleunit test"
   }
 , "dependencies": {
   }
 , "devDependencies": {
-    "simpleunit": "0.0.7"
+    "simpleunit": "0.0.8"
   }
 }
