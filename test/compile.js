@@ -88,15 +88,15 @@ exports['compile list with while'] = function (test) {
 }
 
 exports['compile simple def'] = function (test) {
-    test.equal(sl.compile('(define one 1)'), '(function () { var one; return one = 1; })()');
+    test.equal(sl.compile('(define one 1)'), '(function () { let one; return one = 1; })()');
 }
 
 exports['compile two def and expression'] = function (test) {
-    test.equal(sl.compile('(define one 1) (define two 2) (add one two)'), '(function () { var one; var two; one = 1; two = 2; return add(one, two); })()');
+    test.equal(sl.compile('(define one 1) (define two 2) (add one two)'), '(function () { let one; let two; one = 1; two = 2; return add(one, two); })()');
 }
 
 exports['compile def lamba'] = function (test) {
-    test.equal(sl.compile('(define inc (lambda (x) (add x 1)))'), '(function () { var inc; return inc = (function (x) { return add(x, 1); }); })()');
+    test.equal(sl.compile('(define inc (lambda (x) (add x 1)))'), '(function () { let inc; return inc = (function (x) { return add(x, 1); }); })()');
 }
 
 exports['compile and evaluate defm (macro) lambda'] = function (test) {
@@ -122,11 +122,11 @@ exports['compile simple lambda'] = function (test) {
 }
 
 exports['compile lambda with arguments and variable argument list'] = function (test) {
-    test.equal(sl.compile('(lambda (x y & z) (add x y))'), '(function (x, y) { var z = makevarargs(arguments, 2); return add(x, y); })');
+    test.equal(sl.compile('(lambda (x y & z) (add x y))'), '(function (x, y) { let z = makevarargs(arguments, 2); return add(x, y); })');
 }
 
 exports['compile lambda with variable argument list'] = function (test) {
-    test.equal(sl.compile('(lambda (& z) z)'), '(function () { var z = makevarargs(arguments, 0); return z; })');
+    test.equal(sl.compile('(lambda (& z) z)'), '(function () { let z = makevarargs(arguments, 0); return z; })');
 }
 
 exports['compile second file'] = function (test) {
