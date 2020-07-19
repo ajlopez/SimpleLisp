@@ -1,5 +1,5 @@
 
-var context = require('../lib/context');
+const context = require('../lib/context');
     
 exports['create context function'] = function (test) {
     test.ok(context.createContext);
@@ -7,19 +7,23 @@ exports['create context function'] = function (test) {
 }
 
 exports['context get undefined'] = function (test) {
-    var ctx = context.createContext();
+    const ctx = context.createContext();
+    
     test.equal(ctx.get('unknown'), null);
 }
 
 exports['set and get'] = function (test) {
-    var ctx = context.createContext();
+    const ctx = context.createContext();
+    
     ctx.set('one', 1);
     test.equal(ctx.get('one'), 1);
 }
 
 exports['using parent'] = function (test) {
-    var parent = context.createContext();
-    var ctx = context.createContext(parent);
+    const parent = context.createContext();
+    const ctx = context.createContext(parent);
+    
     parent.set('one', 1);
     test.equal(ctx.get('one'), 1);
 }
+
