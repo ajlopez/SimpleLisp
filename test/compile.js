@@ -122,11 +122,11 @@ exports['compile simple lambda'] = function (test) {
 }
 
 exports['compile lambda with arguments and variable argument list'] = function (test) {
-    test.equal(sl.compile('(lambda (x y & z) (add x y))'), '(function (x, y) { let z = makevarargs(arguments, 2); return add(x, y); })');
+    test.equal(sl.compile('(lambda (x y & z) (add x y))'), '(function (x, y) { const z = makevarargs(arguments, 2); return add(x, y); })');
 }
 
 exports['compile lambda with variable argument list'] = function (test) {
-    test.equal(sl.compile('(lambda (& z) z)'), '(function () { let z = makevarargs(arguments, 0); return z; })');
+    test.equal(sl.compile('(lambda (& z) z)'), '(function () { const z = makevarargs(arguments, 0); return z; })');
 }
 
 exports['compile second file'] = function (test) {
